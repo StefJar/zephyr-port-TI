@@ -1,0 +1,29 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI Tiva CAN controller
+
+compatible: "ti,tiva-can"
+
+include: can-controller.yaml
+
+properties:
+    reg:
+      required: true
+
+    interrupts:
+      required: true
+
+    pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+        GPIO pin configuration for CAN RX and TX. The phandles are
+        expected to reference pinctrl nodes, e.g.
+
+          pinctrl-0 = <&can1_rx &can1_tx>;
+
+    bus-speed:
+      type: int
+      required: true
+      description: bus speed in Baud/s

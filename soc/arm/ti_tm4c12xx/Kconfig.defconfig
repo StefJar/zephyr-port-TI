@@ -1,0 +1,52 @@
+# TI LM3S6965 platform configuration options
+
+# Copyright (c) 2014-2015 Wind River Systems, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_TI_TM4C123GH6PGE
+
+config SOC
+	default "ti_tm4c123gh6pge"
+
+endif
+
+if SOC_TI_TM4C1230H6PM
+
+config SOC
+	default "ti_tm4c1230h6pm"
+
+endif
+
+if SOC_TI_TM4C12XX
+
+config SOC_SERIES
+	default "ti_tm4c12xx"
+
+config NUM_IRQS
+	default 154
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 80000000
+
+config FPU
+	default n
+
+config MPU
+	default n
+
+config HW_STACK_PROTECTION
+ 	default n
+
+config SW_VECTOR_RELAY
+	default y
+
+config CORTEX_M_DWT
+	default y
+
+config SERIAL
+	default y
+
+config UART_INTERRUPT_DRIVEN
+	default y
+
+endif

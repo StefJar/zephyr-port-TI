@@ -1,0 +1,34 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI Tiva uDMA periphal
+
+compatible: "ti,tiva-udma"
+
+include: base.yaml
+
+properties:
+   reg:
+      required: true
+
+   label:
+      required: true
+
+   interrupts:
+      required: true
+      description: |
+         list with 2 interrupts. The first for the udma system intr and the other one for the udma error intr
+
+   dma-channels:
+      type: int
+      required: true
+      description: Number of dma channels
+
+   "#dma-cells":
+      const: 2
+      type: int
+      required: true      
+      
+dma-cells:
+   - channel
+   - config

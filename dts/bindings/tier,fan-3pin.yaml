@@ -1,0 +1,46 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+    3 pin fan
+
+compatible: "tier,fan-3pin"
+
+include:
+    - name: base.yaml
+
+properties:
+    label:
+        required: true
+        
+    drv-gpios:
+        type: phandle-array
+        required: true
+        
+    timer:
+       type: phandle
+       required: false    
+       description: |
+          reference to the can periphal 
+
+    subtimer:
+      required: false
+      type: string
+      default: "A"
+      enum:
+      - "A" # Default value.
+      - "B"
+      description: |
+        the TI timer has 2 timers A and B so we need to select one
+        ... {
+            subtimer = "B"; 
+        };
+        we select timer B
+ 
+    pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+        pin that is used for tacho monitoring
+        pinctrl-0 = <&fan1_tach>;
+ 

@@ -1,0 +1,37 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI TIVA timers
+
+compatible: "ti,tiva-timers"
+
+include: base.yaml
+
+properties:
+   label:
+      required: true
+   
+   reg:
+      required: true
+      
+   prescaler:
+      type: int
+      required: true
+      default: 0
+      description: |
+         timer prescaler. 0 means no prescalor
+
+   interrupts:
+      required: true
+      description: |
+         list with 4 interrupts. The first for the timer A 16/32Bit, 2nd for the timer A 32/64Bit interrupt, 3rd for the timer B 16/32Bit and 4th for the timer B 32/64Bit interrupt.
+
+   pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+        GPIO pin configuration for the differnt timer capture functions. The phandles are
+        expected to reference pinctrl nodes, e.g.
+      
+          pinctrl-0 = <&timer0a_cc>;
+ 

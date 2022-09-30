@@ -1,0 +1,91 @@
+/*
+ * Copyright (c) 2021 Stefan Jaritz
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+ 
+/dts-v1/;
+
+#include <ti/tm4c123gh6pmi.dtsi>
+
+/ {
+	model = "EK_TM4C123GXL";
+	compatible = "ti,tm4c123gh6pmi";
+
+	chosen {
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+//		zephyr,console = &uart0;
+//		zephyr,shell-uart = &uart0;
+	};
+
+	zephyr,user {
+		led_red-gpios = <&gpio_F 1 GPIO_ACTIVE_HIGH>;
+		led_blue-gpios = <&gpio_F 2 GPIO_ACTIVE_HIGH>;
+		led_green-gpios = <&gpio_F 3 GPIO_ACTIVE_HIGH>;
+	};
+		
+	buttons {
+		compatible = "gpio-keys";
+		sw1: button_1 {
+			label = "BUTTON SW1";
+			gpios = <&gpio_F 4 GPIO_ACTIVE_HIGH>;
+		};
+		sw2: button_2 {
+			label = "BUTTON SW2";
+			gpios = <&gpio_F 0 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+	soc {
+		pinctrl: pin-controller@40000000 {
+			// PA0 -> uart0 rx
+			uart0_rx: uart0_rx {
+				port = <&gpio_A>;
+				pin = <0>;
+				map = <0x00000001>;
+				dirmode = "HW";
+				strength = "2MA";
+				type = "STD";
+			};
+			// PA1 -> uart0 tx
+			uart0_tx: uart0_tx {
+				port = <&gpio_A>;
+				pin = <1>;
+				map = <0x00000401>;
+				dirmode = "HW";
+				strength = "2MA";
+				type = "STD";
+			};
+
+		};
+	};
+
+};
+
+&sysclk {
+	clock-frequency = <80000000>;
+};
+
+&pll {
+	// xtal=16MHz sysdiv=2.5
+	xtal = <16000000>;
+	sysdiv=<2>;
+	sysdiv_frac=<5>;
+	status = "okay";
+};
+
+
+&gpio_A {
+	status = "okay";
+};
+
+&gpio_F {
+	status = "okay";
+};
+
+&uart0 {
+	pinctrl-0 = <&uart0_rx &uart0_tx>;
+	current-speed = <115200>;
+	status = "okay";
+};

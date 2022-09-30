@@ -1,0 +1,15 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: ADPD188BI I2C integrated optical module for smoke detection
+
+compatible: "adi,adpd188bi"
+
+include: i2c-device.yaml
+
+properties:
+    gpio0-gpios:
+      type: phandle-array
+      required: false
+      description: |
+        the gpio0 signal pin

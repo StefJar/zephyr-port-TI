@@ -1,0 +1,19 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: HC-SR501 passive infra-red(PIR) motion detector
+
+compatible: "hc,sr501"
+
+include:
+    - name: base.yaml
+
+properties:
+   label:
+      required: true
+      
+   detectSignal-gpios:
+      type: phandle-array
+      required: true
+      description: |
+         the low/high signal that indicates smth has been detected    

@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2021 TIER SE
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+
+#include <mem.h>
+#include <ti/tm4c12xx.dtsi>
+/ {
+	sram0: memory@20000000 {
+		reg = <0x20000000 DT_SIZE_K(32)>;
+	};
+
+	flash-controller@400fd000 {
+		flash0: flash@0 {
+			compatible = "soc-nv-flash";
+			reg = <0x00000000 (256*1024)>;
+		};
+	};
+};
+

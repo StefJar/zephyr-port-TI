@@ -1,0 +1,127 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+    Tiva Pin controller Node
+    Based on pincfg-node.yaml binding.
+
+    Note: `bias-disable` and `drive-push-pull` are default pin configurations.
+           They will be applied in case no `bias-foo` or `driver-bar` properties
+           are set.
+
+compatible: "ti,tiva-pinctrl"
+
+include:
+    - name: base.yaml
+    - name: pincfg-node.yaml
+      child-binding:
+        property-allowlist:
+          - bias-disable
+          - bias-pull-down
+          - bias-pull-up
+          - drive-push-pull
+          - drive-open-drain
+
+properties:
+    reg:
+      required: true
+
+child-binding:
+    description: |
+        This binding gives a base representation of the STM32 pins configration
+
+    properties:
+        port:
+          required: true
+          type: phandle
+          description: |
+            port refernce
+            ... {
+                     port = <&gpio_A>;
+            };
+
+        pin:
+          required: true
+          type: int
+          description: |
+            pin number
+            ... {
+                     pin-number = <1>;
+            };
+
+        map:
+          required: true
+          type: int
+          description: |
+            pls look up port and pin at the pin-map.h file with your mcu
+            Some examples of macro usage:
+            like uart0_rx
+            at pin-map.h for tm4c123gh6pm
+            "#define GPIO_PA0_U0RX 0x00000001"
+            so we go with
+            ... {
+                     pinmap-def = <0x00000001>;
+            };
+            
+        unlock:
+           required: false
+           type: boolean
+           description: |
+              some pins need to be unlocked before they can used like PF0 
+              ... {
+                  unlock = true;
+              };
+
+        dirmode:
+           required: true
+           type: string
+           default: "IN"
+           enum:
+           - "IN" # Default value.
+           - "OUT"
+           - "HW"
+           description: |
+              direction mode
+              ... {
+                  dirmode = "HW"; 
+              };
+              we select HW mode for example for CAN
+
+        strength:
+           required: false
+           type: string
+           default: "2MA"
+           enum:
+           - "2MA" # Default value.
+           - "4MA"
+           - "8MA"
+           - "8MA_SC"
+           - "6MA"
+           - "10MA"
+           - "12MA"
+           description: |
+              drive strength of the pin
+              ... {
+                  strength = "4MA"; 
+              };
+              we select I_max to 4mA
+
+        type:
+           required: false
+           type: string
+           default: "STD"
+           enum:
+           - "STD" # Default value.
+           - "STD_WPU"
+           - "STD_WPD"
+           - "OD"
+           - "ANALOG"
+           - "WAKE_HIGH"
+           - "WAKE_LOW"
+           description: |
+              the pin type
+              ... {
+                  type = "ANALOG"; 
+              };
+              we select analog for the ADC
+              

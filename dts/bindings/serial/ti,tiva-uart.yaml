@@ -1,0 +1,25 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI TIVA UART
+
+compatible: "ti,tiva-uart"
+
+include: uart-controller.yaml
+
+properties:
+    reg:
+      required: true
+
+    interrupts:
+      required: true
+      
+    pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+        pin configuration for serial signals.  We expect
+        that the phandles will reference pinctrl nodes.
+
+        For example the uart0 would be
+           pinctrl-0 = <&uart0_rx &uart0_tx>;

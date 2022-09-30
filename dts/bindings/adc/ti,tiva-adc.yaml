@@ -1,0 +1,44 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI Tiva ADC periphal
+
+compatible: "ti,tiva-adc"
+
+include: base.yaml
+
+properties:
+   reg:
+      required: true
+
+   interrupts:
+      required: true
+
+   reference:
+      required: true
+      type: string
+      default: "INT"
+      enum:
+      - "INT" # Default value.
+      - "EXT"
+      description: |
+         adc Vref
+         ... {
+             reference = "EXT"; 
+         };
+         we select VExt+ and VExt- as ADC reference
+
+   oversampling:
+      required: true
+      type: int
+      description: |
+         amount of oversampling 0, 2, 4, 8, 16, 32, 64
+
+   pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+        GPIO pin configuration for the ADCx channels. The phandles are
+        expected to reference pinctrl nodes, e.g.
+
+          pinctrl-0 = <&adc0_ch3>;

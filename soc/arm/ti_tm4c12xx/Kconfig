@@ -1,0 +1,25 @@
+# TI LM3S6965 platform configuration options
+
+# Copyright (c) 2014-2015 Wind River Systems, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+    prompt "TI TM4C12XX MCU Selection"
+	depends on SOC_SERIES_TI_TM4C12XX
+
+config SOC_TI_TM4C123GH6PGE
+	bool "TM4C123GH6PGE"
+	select SOC_TI_TM4C12XX
+	help
+	  Enable support for TI TM4C12XX MCU series
+
+config SOC_TI_TM4C1230H6PM
+	bool "TM4C1230H6PM"
+	select SOC_TI_TM4C12XX
+	help
+	  Enable support for TI TM4C12XX MCU series
+
+endchoice
+
+config SOC_TI_TM4C12XX
+	bool

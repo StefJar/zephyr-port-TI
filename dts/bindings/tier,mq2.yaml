@@ -1,0 +1,36 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+    driver for the fish fly MQ2 board
+
+compatible: "tier,mq2"
+
+include:
+    - name: base.yaml
+
+properties:
+    label:
+        required: true
+        
+    alarm-gpios:
+        type: phandle-array
+        required: true    
+
+    adc:
+       type: phandle
+       required: true    
+       description: |
+          reference to timer that generates the time slices 
+
+    adc_seqNum:
+       type: int
+       required: true    
+       description: |
+          sequencer number that is used for the adc conversion 
+
+    adc_channel:
+       type: int
+       required: true    
+       description: |
+          adc channel number that is used for the adc conversion 

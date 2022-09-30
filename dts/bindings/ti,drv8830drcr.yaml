@@ -1,0 +1,8 @@
+# Copyright (c) 2021 Kamil Sroka, TIER GmbH
+# SPDX-License-Identifier: Apache-2.0
+
+description: DRV8830DRCR H bridge
+
+compatible: "ti,drv8830drcr"
+
+include: i2c-device.yaml

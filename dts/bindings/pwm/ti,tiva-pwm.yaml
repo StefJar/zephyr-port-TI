@@ -1,0 +1,30 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI Tiva PWM periphal
+
+compatible: "ti,tiva-pwm"
+
+# include: [pwm-controller.yaml, base.yaml]
+
+include: base.yaml
+
+properties:
+   reg:
+      required: true
+   
+   label:
+      required: true
+      
+   pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+         GPIO pin configuration for PWM signal/s. We expect that the phandles
+         will reference pinctrl nodes
+
+   sysclk-div:
+      type: int
+      required: true
+      description: sys clk dividerr
+

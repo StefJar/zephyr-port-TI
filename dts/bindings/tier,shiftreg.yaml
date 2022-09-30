@@ -1,0 +1,51 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+    shift register like SN74HC595
+
+compatible: "tier,shiftreg"
+
+include:
+    - name: base.yaml
+
+properties:
+   label:
+      required: true
+     
+   din-gpios:
+      type: phandle-array
+      required: true
+      description: |
+         data in    
+   
+   srclk-gpios:
+      type: phandle-array
+      required: true    
+      description: |
+         shift register clock
+
+   latch-gpios:
+      type: phandle-array
+      required: true    
+      description: |
+         latch signal
+   
+   rclk-gpios:
+      type: phandle-array
+      required: true    
+      description: |
+         storage register clk (low active)
+   
+   oe-gpios:
+      type: phandle-array
+      required: true    
+      description: |
+         output enable signal (low active)
+   
+   outputs:
+      type: int
+      required: true
+      description: |
+         amount of outputs
+      

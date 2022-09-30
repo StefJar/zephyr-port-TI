@@ -1,0 +1,32 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TLC5973 3-Channel, 12-Bit, PWM Constant-Current LED Driver with Single-Wire Interface
+
+compatible: "ti,tlc5973"
+
+include:
+    - name: base.yaml
+
+properties:
+   label:
+      required: true
+     
+   sdi-gpios:
+      type: phandle-array
+      required: true
+      description: |
+         serial datat in pin    
+
+   clkGen:
+      type: phandle
+      required: true    
+      description: |
+         reference to timer that generates the time slices 
+
+   amount:
+      type: int
+      required: true
+      description: |
+         amount of TLC5973 at the cascade
+      

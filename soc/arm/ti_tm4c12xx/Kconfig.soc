@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_SERIES_TI_TM4C12XX
+	bool "TI TM4C12XX Series MCU"
+
+	select ARM
+	select CPU_CORTEX_M4
+	select CPU_CORTEX_M_HAS_DWT
+	select HAS_SWO
+	select HAS_SEGGER_RTT
+	select BUILD_OUTPUT_HEX
+
+	select SERIAL_HAS_DRIVER
+	select SERIAL_SUPPORT_INTERRUPT
+	help
+	  Enable support for TI TM4C12XX MCU series

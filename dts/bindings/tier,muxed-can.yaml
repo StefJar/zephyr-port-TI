@@ -1,0 +1,50 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+    muxed can 
+
+compatible: "tier,muxed-can"
+
+include:
+    - name: base.yaml
+
+properties:
+    label:
+       required: true
+
+    can:
+       type: phandle
+       required: true    
+       description: |
+          reference to the can periphal 
+
+    pinctrl-0:
+       type: phandles
+       required: false
+       description: |
+         GPIO pin configuration s* and oe. The phandles are
+         expected to reference pinctrl nodes, e.g.
+      
+           pinctrl-0 = <&can0_s0c>;
+        
+    s0-gpios:
+        type: phandle-array
+        required: true    
+
+    s1-gpios:
+        type: phandle-array
+        required: true    
+
+    s2-gpios:
+        type: phandle-array
+        required: true    
+
+    s3-gpios:
+        type: phandle-array
+        required: true    
+
+    oe-gpios:
+        type: phandle-array
+        required: true    
+        

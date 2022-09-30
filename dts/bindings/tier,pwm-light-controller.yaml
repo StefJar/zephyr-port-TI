@@ -1,0 +1,36 @@
+# Copyright (c) 2021 Kamil Sroka, TIER GmbH
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+   pwm light controller
+
+compatible: "tier,pwm-light-controller"
+
+include:
+    - name: base.yaml
+
+properties:
+   label:
+      required: true
+
+   timer:
+      type: phandle
+      required: false
+      description: |
+         reference to the timer periphal
+
+   subtimer:
+     required: false
+     type: string
+     default: "A"
+     enum:
+     - "A"
+     - "B"
+     description: |
+       the TI timer has 2 timers A and B so we need to select one
+
+   pinctrl-0:
+     type: phandle
+     required: false
+     description: |
+       pin that is used for light control

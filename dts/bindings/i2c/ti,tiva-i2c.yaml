@@ -1,0 +1,25 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TI TIVA I2C controller
+
+compatible: "ti,tiva-i2c"
+
+include: i2c-controller.yaml
+
+properties:
+    reg:
+      required: true
+
+    interrupts:
+      required: true
+
+    pinctrl-0:
+      type: phandles
+      required: false
+      description: |
+        GPIO pin configuration for serial signals (SDA, SCL).  We expect
+        that the phandles will reference pinctrl nodes.
+
+        For example the I2C1 would be
+           pinctrl-0 = <&i2c1_sda &i2c1_scl>;

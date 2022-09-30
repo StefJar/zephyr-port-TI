@@ -1,0 +1,8 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: TMP1075 Temperature Sensor 
+
+compatible: "ti,tmp1075"
+
+include: i2c-device.yaml

@@ -1,0 +1,13 @@
+# Copyright (c) 2021 Stefan Jaritz, TIER SE
+# SPDX-License-Identifier: Apache-2.0
+
+description: PCF8574 Remote 8-Bit I/O Expander
+
+compatible: "ti,pcf8574"
+
+include:
+    - name: base.yaml
+
+properties:
+   label:
+      required: true      

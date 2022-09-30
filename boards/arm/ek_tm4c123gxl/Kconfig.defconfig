@@ -1,0 +1,10 @@
+# EK_TM4C123GXL board configuration
+# Copyright (c) 2016 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_EK_TM4C123GXL
+
+config BOARD
+	default "ek_tm4c123gxl"
+
+endif # EK_TM4C123GXL
